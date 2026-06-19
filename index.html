@@ -3,51 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Joint Venture — IA × Ciencia Argentina</title>
+<title>IA × Ciencia — Futuraria | Escalera de Valor</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: #000; color: #fff; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; overflow-x: hidden; }
-
-  /* LIQUID GLASS */
-  .liquid-glass {
-    background: rgba(255,255,255,0.01);
-    background-blend-mode: luminosity;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: none;
-    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
-    position: relative;
-    overflow: hidden;
-  }
-  .liquid-glass::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1.4px;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
-      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-      rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-
-  /* HERO */
+  .liquid-glass { background: rgba(255,255,255,0.01); background-blend-mode: luminosity; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: none; box-shadow: inset 0 1px 1px rgba(255,255,255,0.1); position: relative; overflow: hidden; }
+  .liquid-glass::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.4px; background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
   .page-wrap { position: relative; min-height: 100vh; background: #000; overflow: hidden; }
   .video-wrap { position: absolute; inset: 0; z-index: 0; }
   video.hero-video { width: 100%; height: 100%; object-fit: cover; transform: translateY(17%); }
   .overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.7) 100%); z-index: 1; }
-
-  /* NAV */
   nav { position: relative; z-index: 20; padding: 24px; }
   .nav-inner { border-radius: 9999px; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; max-width: 80rem; margin: 0 auto; width: 100%; }
   .nav-left { display: flex; align-items: center; }
@@ -65,35 +35,25 @@
   .cta-btn { border-radius: 9999px; padding: 10px 28px; color: #000; background: #fff; font-size: 0.875rem; font-weight: 600; cursor: pointer; border: none; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, opacity 0.3s ease; }
   .cta-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 0 20px rgba(255,255,255,0.3); }
   .cta-btn:active { transform: translateY(1px) scale(0.97); }
-
-  /* HERO CONTENT */
-  .hero-content { position: relative; z-index: 10; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 24px 120px; text-align: center; }
+  .hero-content { position: relative; z-index: 10; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 24px; text-align: center; }
   .hero-heading { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 6vw, 5rem); color: #fff; margin-bottom: 1.5rem; letter-spacing: -0.02em; line-height: 1.1; }
   .hero-heading em { font-style: italic; opacity: 0.85; }
   .hero-subtitle { color: rgba(255,255,255,0.7); font-size: clamp(1rem, 1.5vw, 1.15rem); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7; }
   .hero-stats { display: flex; gap: 48px; margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
   .hero-stat .number { font-family: 'Instrument Serif', serif; font-size: 2.2rem; color: #fff; }
   .hero-stat .label { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-
-  /* SECTIONS */
   section { padding: 120px 24px; position: relative; }
   .section-container { max-width: 80rem; margin: 0 auto; }
   .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
   .section-title { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 16px; letter-spacing: -0.02em; line-height: 1.15; }
   .section-subtitle { color: rgba(255,255,255,0.55); max-width: 650px; margin-bottom: 56px; font-size: 1rem; line-height: 1.7; }
-
-  /* GLASS CARDS */
   .glass-card { border-radius: 20px; padding: 32px; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease; }
   .glass-card:hover { transform: translateY(-4px); box-shadow: inset 0 1px 1px rgba(255,255,255,0.3), 0 12px 30px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.06); }
-
-  /* ECOSYSTEM */
   .eco-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
   .eco-card .icon { font-size: 2rem; margin-bottom: 16px; }
   .eco-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.3rem; margin-bottom: 8px; }
   .eco-card p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
   .eco-card .tag { display: inline-block; margin-top: 14px; font-size: 10px; padding: 4px 12px; border-radius: 100px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; }
-
-  /* NICHES TABLE */
   .niche-table { width: 100%; border-collapse: collapse; }
   .niche-table th { text-align: left; padding: 14px 20px; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.3); border-bottom: 1px solid rgba(255,255,255,0.08); }
   .niche-table td { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -103,16 +63,12 @@
   .badge-high { background: rgba(16,185,129,0.15); color: #10b981; }
   .badge-med { background: rgba(245,158,11,0.15); color: #f59e0b; }
   .badge-emerging { background: rgba(124,58,237,0.15); color: #a78bfa; }
-
-  /* COMPETITION */
   .comp-table { width: 100%; border-collapse: collapse; }
   .comp-table th { text-align: left; padding: 12px 16px; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.3); border-bottom: 2px solid rgba(255,255,255,0.08); }
   .comp-table td { padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: rgba(255,255,255,0.7); }
   .comp-table tr:hover { background: rgba(255,255,255,0.02); }
   .comp-highlight { background: rgba(255,255,255,0.03) !important; }
   .comp-highlight td { color: #fff; }
-
-  /* MODELS */
   .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
   .model-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.5rem; margin-bottom: 8px; }
   .model-card .duration { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-bottom: 20px; }
@@ -124,9 +80,7 @@
   .model-card .note { font-size: 0.85rem; color: rgba(255,255,255,0.4); padding: 14px; background: rgba(255,255,255,0.03); border-radius: 12px; }
   .model-card.featured { border: 1px solid rgba(255,255,255,0.15); }
   .featured-tag { position: absolute; top: -12px; right: 24px; background: #fff; color: #000; font-size: 10px; font-weight: 700; padding: 4px 14px; border-radius: 100px; letter-spacing: 1px; }
-
-  /* PLAYBOOK TABS */
-  .playbook-tabs { display: flex; gap: 4px; margin-bottom: 36px; background: rgba(255,255,255,0.03); border-radius: 100px; padding: 4px; width: fit-content; }
+  .playbook-tabs { display: flex; gap: 4px; margin-bottom: 36px; background: rgba(255,255,255,0.03); border-radius: 100px; padding: 4px; width: fit-content; flex-wrap: wrap; }
   .playbook-tab { padding: 10px 24px; border-radius: 100px; font-size: 0.85rem; cursor: pointer; border: none; background: none; color: rgba(255,255,255,0.5); font-family: inherit; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
   .playbook-tab.active { background: #fff; color: #000; font-weight: 600; }
   .playbook-tab:hover:not(.active) { color: rgba(255,255,255,0.8); transform: translateY(-1px); }
@@ -137,62 +91,104 @@
   .step-num { width: 44px; height: 44px; min-width: 44px; border-radius: 50%; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
   .step-content h4 { font-family: 'Instrument Serif', serif; font-size: 1.15rem; margin-bottom: 6px; }
   .step-content p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
-
-  /* METRICS */
   .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 48px; }
   .metric-card { border-radius: 16px; padding: 28px; text-align: center; }
   .metric-card .metric-num { font-family: 'Instrument Serif', serif; font-size: 2.2rem; }
   .metric-card .metric-label { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 6px; text-transform: uppercase; letter-spacing: 1px; }
-
-  /* OBJECTIONS */
   .objection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
   .objection-card { border-radius: 16px; padding: 28px; }
   .objection-card .q { font-size: 0.95rem; font-weight: 600; color: #f59e0b; margin-bottom: 12px; }
   .objection-card .a { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
-
-  /* DISTRIBUTION */
   .dist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
   .dist-card { border-radius: 16px; padding: 28px; text-align: center; }
   .dist-card .dist-icon { font-size: 2rem; margin-bottom: 12px; }
   .dist-card h4 { font-family: 'Instrument Serif', serif; font-size: 1.1rem; margin-bottom: 6px; }
   .dist-card p { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
-
-  /* GAPS */
   .gap-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
   .gap-item { border-radius: 16px; padding: 24px; display: flex; gap: 16px; }
   .gap-num { font-family: 'Instrument Serif', serif; font-size: 1.8rem; color: rgba(255,255,255,0.15); min-width: 36px; }
   .gap-item h4 { font-size: 0.95rem; margin-bottom: 6px; }
   .gap-item p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
-
-  /* PRICING */
   .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
   .pricing-card { border-radius: 16px; padding: 32px; }
   .pricing-card h4 { font-family: 'Instrument Serif', serif; font-size: 1.2rem; margin-bottom: 4px; }
   .pricing-card .who { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
   .pricing-card .amount { font-family: 'Instrument Serif', serif; font-size: 2rem; }
   .pricing-card .unit { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
-
-  /* PITCH */
   .pitch-card { border-radius: 20px; padding: 48px; max-width: 800px; margin: 0 auto; }
   .pitch-card .quote { font-family: 'Instrument Serif', serif; font-size: 1.3rem; line-height: 1.8; color: rgba(255,255,255,0.85); }
   .pitch-card .quote strong { color: #fff; }
   .pitch-card .quote .accent { color: #10b981; }
-
-  /* FOOTER */
   footer { padding: 60px 24px; text-align: center; color: rgba(255,255,255,0.3); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
-
-  /* CTA */
   .cta-section { text-align: center; padding: 140px 24px; }
   .cta-section h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 16px; }
   .cta-section p { color: rgba(255,255,255,0.5); font-size: 1.1rem; max-width: 500px; margin: 0 auto 36px; }
-
-  /* DIVIDER */
   .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); max-width: 80rem; margin: 0 auto; }
+  /* ESCALERA DE VALOR NEW */
+  .escalera-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; align-items: start; }
+  .escalera-card { border-radius: 20px; padding: 36px; position: relative; overflow: hidden; }
+  .escalera-card .level-num { font-family: 'Instrument Serif', serif; font-size: 4rem; color: rgba(255,255,255,0.06); position: absolute; top: 12px; right: 20px; }
+  .escalera-card .emoji { font-size: 2rem; margin-bottom: 16px; }
+  .escalera-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.5rem; margin-bottom: 8px; }
+  .escalera-card .tools { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0; }
+  .escalera-card .tool-tag { font-size: 10px; padding: 4px 10px; border-radius: 100px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); letter-spacing: 0.5px; }
+  .escalera-card .meta { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 12px; }
+  .escalera-card .meta strong { color: #10b981; }
+  .escalera-card.destacado { border: 1px solid rgba(255,255,255,0.1); }
+  .escalera-connector { display: flex; justify-content: center; align-items: center; padding: 12px 0; color: rgba(255,255,255,0.2); font-size: 1.5rem; }
+  /* ORGANIZATION TABS NEW */
+  .org-tabs { display: flex; gap: 4px; margin-bottom: 36px; background: rgba(255,255,255,0.03); border-radius: 100px; padding: 4px; flex-wrap: wrap; }
+  .org-tab { padding: 8px 18px; border-radius: 100px; font-size: 0.8rem; cursor: pointer; border: none; background: none; color: rgba(255,255,255,0.5); font-family: inherit; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .org-tab.active { background: #fff; color: #000; font-weight: 600; }
+  .org-tab:hover:not(.active) { color: rgba(255,255,255,0.8); }
+  .org-models { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 24px 0; }
+  .org-model-tag { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; text-align: center; font-size: 0.85rem; transition: all 0.3s ease; }
+  .org-model-tag:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+  .org-model-tag .mname { font-weight: 600; color: #fff; }
+  .org-model-tag .mdesc { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+  .org-pitch { background: rgba(255,255,255,0.02); border-radius: 16px; padding: 28px; margin-top: 24px; border-left: 3px solid #10b981; }
+  .org-pitch p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+  
+  /* ESCALERA CARD ENHANCED */
+  .escalera-badge { display: inline-block; font-size: 10px; padding: 4px 14px; border-radius: 100px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); letter-spacing: 1px; margin-bottom: 14px; }
+  .escalera-agenda { margin: 16px 0; }
+  .escalera-agenda h4 { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+  .escalera-agenda ul { list-style: none; padding: 0; }
+  .escalera-agenda li { padding: 5px 0; font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .escalera-output { margin: 16px 0 20px; padding: 14px; background: rgba(16,185,129,0.06); border-radius: 12px; border: 1px solid rgba(16,185,129,0.12); }
+  .escalera-output strong { color: #10b981; font-size: 0.8rem; display: block; margin-bottom: 6px; }
+  .escalera-cta { display: inline-block; text-decoration: none; width: 100%; text-align: center; margin-top: 8px; }
+  /* RUBRO MINI-GRID */
+  .rubro-grid { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .rubro-tag { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(255,255,255,0.02); border-radius: 10px; font-size: 0.75rem; transition: all 0.3s ease; }
+  .rubro-tag:hover { background: rgba(255,255,255,0.05); }
+  .rubro-icon { font-size: 1rem; }
+  .rubro-models { color: rgba(255,255,255,0.55); flex: 1; }
+  .rubro-time { color: #10b981; font-size: 0.68rem; font-weight: 600; white-space: nowrap; }
+  /* INCLUYE SECTION */
+  .incluye-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .incluye-col { border-radius: 16px; padding: 32px; text-align: center; }
+  .incluye-emoji { font-size: 2.2rem; margin-bottom: 12px; }
+  .incluye-col h3 { font-family: 'Instrument Serif', serif; font-size: 1.3rem; margin-bottom: 4px; }
+  .incluye-sub { font-size: 0.8rem; color: #10b981; margin-bottom: 20px; font-weight: 500; }
+  .incluye-checklist { list-style: none; text-align: left; padding: 0; }
+  .incluye-checklist li { padding: 8px 0; font-size: 0.82rem; color: rgba(255,255,255,0.6); border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .incluye-checklist li:last-child { border-bottom: none; }
 
-  @media (max-width: 768px) {
+
+  /* QUIENES SOMOS */
+  .quienes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .quienes-card { border-radius: 20px; padding: 36px; text-align: center; }
+  .quienes-logo { height: 40px; width: auto; margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto; }
+  .quienes-flag { height: 16px; width: auto; margin-bottom: 10px; display: inline-block; opacity: 0.5; }
+  .quienes-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.6rem; margin-bottom: 4px; }
+  .quienes-sub { font-size: 0.85rem; color: #10b981; font-weight: 500; margin-bottom: 16px; }
+  .quienes-desc { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+@media (max-width: 768px) {
     .hero-stats { flex-direction: column; gap: 24px; }
     .playbook-tabs { flex-wrap: wrap; }
     .nav-links { display: none; }
+    .org-tabs { border-radius: 16px; }
   }
 </style>
 </head>
@@ -201,214 +197,202 @@
 <script>
 const { useRef, useEffect, useState } = React;
 const h = React.createElement;
-
-/* ── SVG Icons ── */
 function IconGlobe({ size = 24 }) {
   return h('svg', { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
-    h('circle', { cx: 12, cy: 12, r: 10 }),
-    h('line', { x1: 2, y1: 12, x2: 22, y2: 12 }),
-    h('path', { d: 'M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z' })
+    h('circle', { cx: 12, cy: 12, r: 10 }), h('line', { x1: 2, y1: 12, x2: 22, y2: 12 }), h('path', { d: 'M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z' })
   );
 }
 function IconArrowRight({ size = 20 }) {
   return h('svg', { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
-    h('line', { x1: 5, y1: 12, x2: 19, y2: 12 }),
-    h('polyline', { points: '12 5 19 12 12 19' })
+    h('line', { x1: 5, y1: 12, x2: 19, y2: 12 }), h('polyline', { points: '12 5 19 12 12 19' })
   );
 }
-function IconInstagram({ size = 20 }) {
-  return h('svg', { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
-    h('rect', { x: 2, y: 2, width: 20, height: 20, rx: 5, ry: 5 }),
-    h('path', { d: 'M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z' }),
-    h('line', { x1: 17.5, y1: 6.5, x2: 17.51, y2: 6.5 })
-  );
-}
-function IconTwitter({ size = 20 }) {
-  return h('svg', { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
-    h('path', { d: 'M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z' })
-  );
-}
-
-/* ── Video Background Component ── */
 function VideoBG() {
-  const videoRef = useRef(null);
-  const fadingOutRef = useRef(false);
-  const rafRef = useRef(null);
-
+  const videoRef = useRef(null); const fadingOutRef = useRef(false); const rafRef = useRef(null);
   function cancelFade() { if (rafRef.current !== null) { cancelAnimationFrame(rafRef.current); rafRef.current = null; } }
   function animateFade(target, duration, onDone) {
-    cancelFade();
-    const video = videoRef.current;
-    if (!video) return;
-    const start = video.style.opacity !== '' ? parseFloat(video.style.opacity) : 1;
-    const startTime = performance.now();
-    const delta = target - start;
-    function step(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
-      video.style.opacity = String(start + delta * eased);
-      if (progress < 1) { rafRef.current = requestAnimationFrame(step); } else { rafRef.current = null; onDone && onDone(); }
-    }
+    cancelFade(); const video = videoRef.current; if (!video) return;
+    var start = video.style.opacity !== '' ? parseFloat(video.style.opacity) : 1;
+    var startTime = performance.now(); var delta = target - start;
+    function step(now) { var elapsed = now - startTime; var progress = Math.min(elapsed / duration, 1); var eased = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress; video.style.opacity = String(start + delta * eased); if (progress < 1) { rafRef.current = requestAnimationFrame(step); } else { rafRef.current = null; onDone && onDone(); } }
     rafRef.current = requestAnimationFrame(step);
   }
-
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.style.opacity = '0';
+    const video = videoRef.current; if (!video) return; video.style.opacity = '0';
     function handleCanPlay() { fadingOutRef.current = false; animateFade(1, 500); }
-    function handleTimeUpdate() { if (!video.duration) return; const remaining = video.duration - video.currentTime; if (remaining <= 0.55 && !fadingOutRef.current) { fadingOutRef.current = true; animateFade(0, 500); } }
-    function handleEnded() { video.style.opacity = '0'; setTimeout(() => { fadingOutRef.current = false; video.currentTime = 0; video.play().catch(() => {}); animateFade(1, 500); }, 100); }
+    function handleTimeUpdate() { if (!video.duration) return; var remaining = video.duration - video.currentTime; if (remaining <= 0.55 && !fadingOutRef.current) { fadingOutRef.current = true; animateFade(0, 500); } }
+    function handleEnded() { video.style.opacity = '0'; setTimeout(function() { fadingOutRef.current = false; video.currentTime = 0; video.play().catch(function(){}); animateFade(1, 500); }, 100); }
     video.addEventListener('canplay', handleCanPlay, { once: true });
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('ended', handleEnded);
-    return () => { cancelFade(); video.removeEventListener('canplay', handleCanPlay); video.removeEventListener('timeupdate', handleTimeUpdate); video.removeEventListener('ended', handleEnded); };
+    video.addEventListener('timeupdate', handleTimeUpdate); video.addEventListener('ended', handleEnded);
+    return function() { cancelFade(); video.removeEventListener('canplay', handleCanPlay); video.removeEventListener('timeupdate', handleTimeUpdate); video.removeEventListener('ended', handleEnded); };
   }, []);
-
-  return h('div', { className: 'video-wrap' },
-    h('video', { ref: videoRef, className: 'hero-video', autoPlay: true, muted: true, playsInline: true, loop: false, src: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_115001_bcdaa3b4-03de-47e7-ad63-ae3e392c32d4.mp4', style: { opacity: '0' } })
-  );
+  return h('div', { className: 'video-wrap' }, h('video', { ref: videoRef, className: 'hero-video', autoPlay: true, muted: true, playsInline: true, loop: false, src: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_115001_bcdaa3b4-03de-47e7-ad63-ae3e392c32d4.mp4', style: { opacity: '0' } }));
 }
-
-/* ── Glass Section Divider ── */
 function Divider() { return h('div', { className: 'section-divider' }); }
 
-/* ── App ── */
+/* ── Organization Data ── */
+var ORGS = {
+  inta: {
+    name: 'INTA', icon: '🌾',
+    modelos: [
+      { name: 'YOLOv8', desc: 'Detección de plagas en tiempo real' },
+      { name: 'PlantVillage', desc: 'Clasificación de enfermedades en cultivos' },
+      { name: 'CropYield', desc: 'Predicción de rendimiento de cosecha' },
+      { name: 'ClimaX', desc: 'Forecasting climático para agricultura' },
+      { name: 'Prithvi', desc: 'Análisis satelital de cultivos' },
+      { name: 'Irrigación LSTM', desc: 'Optimización de riego 20-40%' },
+      { name: 'AGML', desc: 'Benchmarking de modelos agricolas' },
+      { name: 'PlantSeg', desc: 'Microscopia 3D de tejidos vegetales' },
+      { name: 'ClimateLearn', desc: 'Downscaling climatico para cultivos' },
+      { name: 'FourCastNet', desc: 'Prediccion meteorologica global' },
+      { name: 'DeepSensor', desc: 'Interpolacion espacial de sensores' },
+      { name: 'OpenClimateFix', desc: 'Prediccion de energia solar' },
+      { name: 'PyTorchForecasting', desc: 'Pronostico avanzado de rendimiento' },
+      { name: 'WindPower', desc: 'Prediccion de viento para parques eolicos' },
+      { name: 'NetworkX', desc: 'Analisis de redes de suministro' },
+      { name: 'PySal', desc: 'Analisis geoespacial de cultivos' },
+],
+    pitch: 'INTA tiene 15 estaciones experimentales en todo el país. Estos modelos corren en Google Colab sin necesidad de GPUs dedicadas. Un investigador de INTA puede detectar plagas, predecir cosechas y optimizar riego en 2 horas de setup — lo que hoy toma 3 semanas de trabajo manual.'
+  },
+  leloir: {
+    name: 'Instituto Leloir', icon: '🧬',
+    modelos: [
+      { name: 'AlphaFold', desc: 'Premio Nobel. Estructura 3D de proteínas en 5 min' },
+      { name: 'BioBERT', desc: 'Análisis de textos biomédicos en español' },
+      { name: 'PubMedBERT', desc: 'Extracción de conocimiento de 30M+ papers' },
+      { name: 'ESMFold', desc: 'AlphaFold ligero para secuencias largas' },
+      { name: 'DiffDock', desc: 'Docking molecular para drug discovery' },
+      { name: 'MONAI', desc: 'Segmentacion de imagenes medicas' },
+      { name: 'MedSAM', desc: 'Segmentador medico un-click' },
+      { name: 'nnU-Net', desc: 'Segmentacion automatica' },
+      { name: 'DeepLabCut', desc: 'Analisis de movimiento animal' },
+      { name: 'PathML', desc: 'Analisis computacional de biopsias' },
+      { name: 'CheXNet', desc: 'Deteccion de neumonia en rayos X' },
+      { name: 'SciSpacy', desc: 'Extraccion de entidades biomedicas' },
+      { name: 'DGL LifeSci', desc: 'Drug discovery con graph ML' },
+],
+    pitch: 'El Instituto Leloir tiene un Premio Nobel de Química. AlphaFold resuelve en 5 minutos lo que antes tomaba 6 meses de laboratorio. Con BioBERT y PubMedBERT pueden interrogar 30 millones de papers en segundos. La Dra. Dieterle dijo públicamente: "En año y medio tendríamos kits rápidos de hantavirus, si tuviéramos fondos" — estos modelos son fondos que no necesitan presupuesto.'
+  },
+  inti: {
+    name: 'INTI', icon: '⚙️',
+    modelos: [
+      { name: 'MACE', desc: 'Simulación atómica con precisión cuántica' },
+      { name: 'CHGNet', desc: 'Diseño de baterías y materiales energéticos' },
+      { name: 'MatGL', desc: 'Predicción de propiedades de materiales' },
+      { name: 'PyMatGen', desc: 'Explorador de 150K+ materiales base de datos' },
+      { name: 'GPT4All', desc: 'Asistente técnico offline para PyMEs' },
+      { name: 'DeepMD', desc: 'Simulador atomico rapido con IA' },
+      { name: 'SchNetPack', desc: 'Predictor molecular cuantico' },
+      { name: 'DGL LifeSci', desc: 'Drug discovery molecular' },
+],
+    pitch: 'INTI está en reestructuración 2026, redefiniendo su rol. Estos modelos de simulación atómica reemplazan cálculos DFT que tomaban semanas por 30 segundos en GPU. Para una institución que certifica calidad industrial, tener predicción de propiedades de materiales sin laboratorio cambia las reglas del juego.'
+  },
+  crea: {
+    name: 'CREA', icon: '🌾',
+    modelos: [
+      { name: 'YOLOv8', desc: 'Demo visual para productores' },
+      { name: 'Prophet', desc: 'Forecasting de precio de commodities' },
+      { name: 'CropYield', desc: 'Predicción de rendimiento' },
+      { name: 'PlantVillage', desc: 'Diagnóstico de enfermedades' },
+      { name: 'Random Forest', desc: 'Recomendación de cultivos por suelo' },
+      { name: 'ClimateLearn', desc: 'Downscaling climatico regional' },
+      { name: 'PyTorchForecasting', desc: 'Pronostico avanzado de commodities' },
+],
+    pitch: 'CREA tiene 200+ grupos de productores agropecuarios en todo el país. Un piloto con 3 grupos CREA es prueba de concepto para 2000+ empresarios que toman decisiones basadas en datos. El piloto más rentable: Prophet para predecir precios de soja/maíz, YOLOv8 para diagnóstico de plagas en campo.'
+  },
+  aapresid: {
+    name: 'AAPRESID', icon: '🌱',
+    modelos: [
+      { name: 'CropYield', desc: 'Rendimiento por práctica de siembra' },
+      { name: 'DeepWeeds', desc: 'Clasificación maleza vs cultivo' },
+      { name: 'ClimaX', desc: 'Forecasting climático estacional' },
+      { name: 'Irrigación LSTM', desc: 'Riego inteligente 20-40% ahorro' },
+      { name: 'Random Forest', desc: 'MRV de carbono en suelos' },
+      { name: 'ClimateLearn', desc: 'Downscaling climatico para agricultura' },
+      { name: 'FourCastNet', desc: 'Prediccion climatica global' },
+      { name: 'DeepSensor', desc: 'Interpolacion espacial de datos' },
+      { name: 'PyTorchForecasting', desc: 'Pronostico avanzado de series' },
+      { name: 'WindPower', desc: 'Prediccion de viento para energia' },
+],
+    pitch: 'AAPRESID es el referente en siembra directa y agricultura sustentable. Su desafío actual es la monetización del carbono en suelos — necesitan MRV (medición, reporte, verificación). Random Forest + datos de suelo pueden cuantificar captura de carbono sin laboratorio costoso.'
+  },
+  senasa: {
+    name: 'SENASA', icon: '🔬',
+    modelos: [
+      { name: 'YOLOv8', desc: 'Inspección visual automatizada en frontera' },
+      { name: 'Whisper', desc: 'Asistente regulatorio por voz' },
+      { name: 'GPT4All', desc: 'Chatbot offline para productores' },
+      { name: 'Prophet', desc: 'Predicción de brotes estacionales' },
+      { name: 'SAM 2', desc: 'Segmentación de imágenes de diagnóstico' },
+      { name: 'MONAI', desc: 'Segmentacion de imagenes medicas' },
+      { name: 'MedSAM', desc: 'Segmentador medico un-click' },
+      { name: 'nnU-Net', desc: 'Segmentacion automatica de organos' },
+      { name: 'BETO', desc: 'Clasificador de textos en espanol' },
+      { name: 'MARIA', desc: 'Analizador avanzado de texto en espanol' },
+      { name: 'NLTK', desc: 'Nube de palabras para reportes' },
+      { name: 'BERTopic', desc: 'Descubridor de temas en documentos' },
+],
+    pitch: 'SENASA está digitalizando toda su cadena de sanidad agroalimentaria. Con presión internacional de la UE por trazabilidad total, estos modelos permiten inspección visual automatizada en fronteras y predicción de brotes de influenza aviar o langostas antes de que ocurran.'
+  }
+};
+
 function App() {
   const [activeTab, setActiveTab] = useState('leads');
+  const [activeOrg, setActiveOrg] = useState('inta');
 
   return h('div', null,
-
     /* ── HERO ── */
     h('div', { className: 'page-wrap' },
-      h(VideoBG),
-      h('div', { className: 'overlay' }),
+      h(VideoBG), h('div', { className: 'overlay' }),
       h('nav', null,
         h('div', { className: 'nav-inner liquid-glass' },
           h('div', { className: 'nav-left' },
-            h('div', { className: 'logo-area' },
-              h(IconGlobe, { size: 24 }),
-              h('span', null, 'IA × Ciencia')
-            ),
+            h('div', { className: 'logo-area' }, h(IconGlobe, { size: 24 }), h('span', null, 'IA × Ciencia')),
             h('div', { className: 'nav-links' },
-              h('a', { className: 'nav-link', href: '#ecosistema' }, 'Ecosistema'),
-              h('a', { className: 'nav-link', href: '#modelos' }, 'Modelos'),
-              h('a', { className: 'nav-link', href: '#playbooks' }, 'Playbooks'),
-              h('a', { className: 'nav-link', href: '#pitch' }, 'Pitch')
+              h('a', { className: 'nav-link', href: '#escalera' }, 'Escalera'),
+              h('a', { className: 'nav-link', href: '#organizaciones' }, 'Rutas'),
+              h('a', { className: 'nav-link', href: '#incluye' }, 'Incluye'),
+              h('a', { className: 'nav-link', href: '#playbooks' }, 'Playbooks')
             )
           ),
-          h('div', { className: 'nav-right' },
-            h('a', { className: 'cta-btn', href: '#modelos' }, 'Ver bootcamps')
-          )
+          h('div', { className: 'nav-right' }, h('a', { className: 'cta-btn', href: '#escalera' }, 'Ver bootcamps'))
         )
       ),
       h('div', { className: 'hero-content' },
-        h('p', { className: 'section-label', style: { marginBottom: '20px' } }, '⚡ De la investigación al producto'),
-        h('h1', { className: 'hero-heading' }, 'El puente que falta entre', h('br'), h('em', null, 'ciencia argentina'), ' y', h('br'), 'productos de IA'),
-        h('p', { className: 'hero-subtitle' }, 'Argentina produce científicos de clase mundial. Lo que no produce es el camino para convertir esa investigación en productos de inteligencia artificial que generen impacto y revenue.'),
+        h('p', { className: 'section-label', style: { marginBottom: '20px' } }, '⚡ De la idea al producto'),
+        h('h1', { className: 'hero-heading' }, h('em', null, 'IA para la ciencia'), h('br'), 'de Argentina al mundo'),
+        h('p', { className: 'hero-subtitle' }, 'No empezamos con teoría. Empezamos con herramientas que funcionan hoy. 3 niveles para llevar tu investigación del laboratorio al mercado.'),
         h('div', { style: { marginTop: '32px', display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' } },
-          h('a', { className: 'cta-btn', href: '#modelos' }, 'Ver modelos de bootcamp'),
-          h('a', { className: 'cta-btn', href: '#pitch', style: { background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.2)' } }, 'Ver pitch para Mara')
+          h('a', { className: 'cta-btn', href: '#escalera' }, 'Ver la escalera'),
+          h('a', { className: 'cta-btn', href: '#organizaciones', style: { background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.2)' } }, 'Tu ruta')
         ),
         h('div', { className: 'hero-stats' },
-          h('div', { className: 'hero-stat' }, h('div', { className: 'number' }, '30%'), h('div', { className: 'label' }, 'Deep tech LatAm\nviene de Argentina')),
-          h('div', { className: 'hero-stat' }, h('div', { className: 'number' }, '$585M+'), h('div', { className: 'label' }, 'Financiamiento total\nstartups argentinas')),
-          h('div', { className: 'hero-stat' }, h('div', { className: 'number' }, '12'), h('div', { className: 'label' }, 'Unicornios\nproducidos')),
-          h('div', { className: 'hero-stat' }, h('div', { className: 'number' }, '0'), h('div', { className: 'label' }, 'Programas ciencia\n→ producto IA'))
+          h('div', { className: 'hero-stat' }, h('div', { className: 'number' }, '3'), h('div', { className: 'label' }, 'Niveles\nen un solo pipeline')),
+          h('div', { className: 'hero-stat' }, h('div', { className: 'number' }, '37'), h('div', { className: 'label' }, 'Modelos open-source\nque ya funcionan')),
+          h('div', { className: 'hero-stat' }, h('div', { className: 'number' }, '5'), h('div', { className: 'label' }, 'Rubros\ncientíficos cubiertos')),
+          h('div', { className: 'hero-stat' }, h('div', { className: 'number' }, '$0'), h('div', { className: 'label' }, 'Inversión en\nherramientas base'))
         )
       )
     ),
 
-    /* ── ECOSYSTEM ── */
-    h('section', { id: 'ecosistema', style: { background: '#000' } },
+    /* ── NEW: QUIENES SOMOS ── */
+    h('section', { id: 'quienes', style: { background: '#000' } },
       h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'El ecosistema actual'),
-        h('div', { className: 'section-title' }, 'Lo que Argentina ya tiene'),
-        h('div', { className: 'section-subtitle' }, 'Instituciones, programas y capacidades que existen hoy. No empezamos de cero — empezamos de una base sólida que nadie está conectando.'),
-        h('div', { className: 'eco-grid' },
-          h('div', { className: 'eco-card glass-card' }, h('div', { className: 'icon' }, '🔬'), h('h3', null, 'CONICET'), h('p', null, '10,000+ investigadores. Spin-offs como Retinar (IA para oftalmología). Framework STAN para servicios tecnológicos.'), h('span', { className: 'tag' }, 'Talento científico')),
-          h('div', { className: 'eco-card glass-card' }, h('div', { className: 'icon' }, '🌾'), h('h3', null, 'INTA'), h('p', null, 'Agricultura de precisión con IA y robótica. Proyecto tripartito con Crucianelli y Leaf Agrotronics. Congreso anual 800+ asistentes.'), h('span', { className: 'tag' }, 'AgriTech IA')),
-          h('div', { className: 'eco-card glass-card' }, h('div', { className: 'icon' }, '🏭'), h('h3', null, 'INTI'), h('p', null, 'Instituto Nacional de Metrología. Certificación de productos y procesos. Red de laboratorios para la industria.'), h('span', { className: 'tag' }, 'Calidad y estándares')),
-          h('div', { className: 'eco-card glass-card' }, h('div', { className: 'icon' }, '🧬'), h('h3', null, 'FAN'), h('p', null, 'Fundación Argentina de Nanotecnología. Posgrado en Bio y Nanotecnología 2026. Programa Federal $3,800M ARS.'), h('span', { className: 'tag' }, 'Nano/Bio')),
-          h('div', { className: 'eco-card glass-card' }, h('div', { className: 'icon' }, '🏛️'), h('h3', null, 'Agencia I+D+i'), h('p', null, 'PICTO IA: $13.5M USD para investigación IA. Aceleradoras con $40M USD (Banco Mundial). Ley de Economía del Conocimiento.'), h('span', { className: 'tag' }, 'Financiamiento')),
-          h('div', { className: 'eco-card glass-card' }, h('div', { className: 'icon' }, '🎓'), h('h3', null, 'Universidades'), h('p', null, 'PLADEMA/UNICEN (birthplace de Retinar). Di Tella AI Lab. UNCUYO Bionanotech ($3B ARS). UBA, UTN, ITBA.'), h('span', { className: 'tag' }, 'Investigación'))
-        )
-      )
-    ),
-
-    h(Divider),
-
-    /* ── NICHES ── */
-    h('section', { id: 'nichos', style: { background: '#000' } },
-      h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'Nichos objetivo'),
-        h('div', { className: 'section-title' }, '¿A quién apuntamos?'),
-        h('div', { className: 'section-subtitle' }, 'Cada nicho tiene investigadores con conocimiento de dominio que no saben cómo convertir su expertise en productos de IA.'),
-        h('div', { style: { overflowX: 'auto' } },
-          h('table', { className: 'niche-table' },
-            h('thead', null, h('tr', null, h('th', null, 'Nicho'), h('th', null, 'Perfil'), h('th', null, 'Producto IA'), h('th', null, 'Potencial'))),
-            h('tbody', null,
-              h('tr', null, h('td', null, h('span', { className: 'niche-icon' }, '🌾 '), h('strong', null, 'AgriTech')), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Investigadores INTA, agrónomos'), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Detección de plagas, optimización de riego'), h('td', null, h('span', { className: 'niche-badge badge-high' }, 'Alto'))),
-              h('tr', null, h('td', null, h('span', { className: 'niche-icon' }, '🏥 '), h('strong', null, 'Salud / BioTech')), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Investigadores CONICET, bioquímicos'), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Diagnóstico asistido por IA, imágenes médicas'), h('td', null, h('span', { className: 'niche-badge badge-high' }, 'Alto'))),
-              h('tr', null, h('td', null, h('span', { className: 'niche-icon' }, '🧬 '), h('strong', null, 'Nano/Materiales')), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Investigadores FAN, nanotecnólogos'), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Simulación computacional, descubrimiento'), h('td', null, h('span', { className: 'niche-badge badge-med' }, 'Medio'))),
-              h('tr', null, h('td', null, h('span', { className: 'niche-icon' }, '🌍 '), h('strong', null, 'Clima / Energía')), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Climatólogos, ingenieros ambientales'), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Modelos predictivos climáticos, renovables'), h('td', null, h('span', { className: 'niche-badge badge-emerging' }, 'Emergente'))),
-              h('tr', null, h('td', null, h('span', { className: 'niche-icon' }, '📊 '), h('strong', null, 'Ciencias Sociales')), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Economistas, sociólogos con datos'), h('td', { style: { color: 'rgba(255,255,255,0.6)' } }, 'Análisis de políticas públicas, NLP'), h('td', null, h('span', { className: 'niche-badge badge-emerging' }, 'Emergente')))
-            )
-          )
-        )
-      )
-    ),
-
-    h(Divider),
-
-    /* ── COMPETITION ── */
-    h('section', { id: 'competencia', style: { background: '#000' } },
-      h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'Panorama competitivo'),
-        h('div', { className: 'section-title' }, '¿Quién más hace esto?'),
-        h('div', { className: 'section-subtitle' }, 'Hay financiamiento para investigación, concursos, aceleradoras — pero el puente no existe.'),
-        h('div', { style: { overflowX: 'auto' } },
-          h('table', { className: 'comp-table' },
-            h('thead', null, h('tr', null, h('th', null, 'Programa'), h('th', null, 'Formato'), h('th', null, 'Precio'), h('th', null, 'Target'), h('th', null, 'Gap'))),
-            h('tbody', null,
-              h('tr', null, h('td', null, h('strong', null, 'Henry')), h('td', null, '4-8 meses online'), h('td', null, 'ISA (~$4-5K USD)'), h('td', null, 'General'), h('td', null, 'No aplica conocimiento científico')),
-              h('tr', null, h('td', null, h('strong', null, 'Coderhouse')), h('td', null, 'Cursos cortos'), h('td', null, '$100-300 USD'), h('td', null, 'General'), h('td', null, 'Sin profundidad real')),
-              h('tr', null, h('td', null, h('strong', null, 'TripleTen')), h('td', null, '6 meses'), h('td', null, '~$1,500 USD'), h('td', null, 'General'), h('td', null, 'Sin orientación científicos')),
-              h('tr', null, h('td', null, h('strong', null, 'Agencia I+D+i')), h('td', null, 'Para empresas existentes'), h('td', null, 'Grant-based'), h('td', null, 'Startups'), h('td', null, 'No forma desde cero')),
-              h('tr', null, h('td', null, h('strong', null, 'PICTO IA')), h('td', null, 'Redes de investigación'), h('td', null, '$13.5M fondos'), h('td', null, 'Investigadores'), h('td', null, 'Solo investigación')),
-              h('tr', { className: 'comp-highlight' }, h('td', null, h('strong', null, '⚡ Nuestro Bootcamp')), h('td', null, h('strong', null, '1-2 días / 4-8 semanas')), h('td', null, h('strong', null, '$150-3,000 USD')), h('td', null, h('strong', null, 'Científicos + IA')), h('td', null, h('strong', null, 'EL PUENTE QUE FALTA')))
-            )
-          )
-        )
-      )
-    ),
-
-    h(Divider),
-
-    /* ── MODELS ── */
-    h('section', { id: 'modelos', style: { background: '#000' } },
-      h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'Modelos de bootcamp'),
-        h('div', { className: 'section-title' }, 'Dos formatos, un objetivo'),
-        h('div', { className: 'section-subtitle' }, 'Convertir conocimiento científico en productos de IA que generen impacto y revenue.'),
-        h('div', { className: 'models-grid' },
-          h('div', { className: 'model-card glass-card' },
-            h('h3', null, '⚡ Sprint'),
-            h('div', { className: 'duration' }, '1-2 días presencial'),
-            h('div', { className: 'price' }, '$150-300 ', h('span', { style: { fontSize: '0.9rem', fontWeight: 400, color: 'rgba(255,255,255,0.4)' } }, 'USD/persona')),
-            h('div', { className: 'price-note' }, 'Institucional: $200/participante × 20-30 personas'),
-            h('ul', null, h('li', null, 'Intro a herramientas de IA aplicadas'), h('li', null, 'Mapeo de oportunidades: ¿qué de tu investigación puede ser un producto?'), h('li', null, 'Prototipado rápido no-code/low-code'), h('li', null, 'Framework de viabilidad técnica y de mercado'), h('li', null, 'Networking con otros investigadores emprendedores')),
-            h('div', { className: 'note' }, h('strong', null, 'Ideal para: '), 'Instituciones que quieren probar el modelo. CONICET, universidades, INTA como piloto.')
+        h('div', { className: 'section-label' }, 'Quiénes somos'),
+        h('div', { className: 'section-title' }, 'Dos laboratorios de innovación,', h('br'), 'un solo puente entre la ciencia y la IA'),
+        h('div', { className: 'section-subtitle' }, 'Una iniciativa de dos laboratorios de innovación internacionales: NETI (Argentina) y Futuraria (Perú).'),
+        h('div', { className: 'quienes-grid' },
+          h('div', { className: 'quienes-card glass-card' },
+            h('img', { src: 'logo_neti_blanco.png', alt: 'NETI', className: 'quienes-logo' }),
+            h('img', { src: 'argentina.png', alt: 'Argentina', className: 'quienes-flag' }),
+            h('p', { className: 'quienes-sub' }, 'No está todo inventado'),
+            h('p', { className: 'quienes-desc' }, 'Laboratorio de innovación argentino enfocado en ciencia aplicada, tecnología abierta y transferencia al sector productivo. NETI articula investigadores, instituciones y modelos open-source para resolver problemas concretos de la industria y el agro argentino.'),
           ),
-          h('div', { className: 'model-card glass-card featured', style: { position: 'relative' } },
-            h('div', { className: 'featured-tag' }, 'RECOMENDADO'),
-            h('h3', null, '🚀 Inmersión'),
-            h('div', { className: 'duration' }, '4-8 semanas (part-time o full-time)'),
-            h('div', { className: 'price' }, '$800-3,000 ', h('span', { style: { fontSize: '0.9rem', fontWeight: 400, color: 'rgba(255,255,255,0.4)' } }, 'USD/persona')),
-            h('div', { className: 'price-note' }, 'Premium (con mentoría 1:1): $2,000-3,000 USD'),
-            h('ul', null, h('li', null, 'Módulo 1: De la investigación al problema de mercado'), h('li', null, 'Módulo 2: Herramientas IA/ML (Python, APIs, modelos)'), h('li', null, 'Módulo 3: Prototipado de producto (MVP funcional)'), h('li', null, 'Módulo 4: Modelo de negocio y pitch'), h('li', null, 'Módulo 5: IP, patentes y aspectos legales'), h('li', null, 'Demo Day con inversores e instituciones'), h('li', null, 'Mentoría 1:1 con expertos'), h('li', null, 'Comunidad post-bootcamp (alumni)')),
-            h('div', { className: 'note' }, h('strong', null, 'Ideal para: '), 'Investigadores que quieren lanzar un proyecto real. Cohortes de 15-25 personas.')
+          h('div', { className: 'quienes-card glass-card' },
+            h('img', { src: 'futuraria_logo_small.png', alt: 'Futuraria', className: 'quienes-logo' }),
+            h('img', { src: 'peru.svg', alt: 'Perú', className: 'quienes-flag' }),
+            h('p', { className: 'quienes-sub' }, 'Innovación sin fronteras'),
+            h('p', { className: 'quienes-desc' }, 'Laboratorio de innovación peruano especializado en IA aplicada, automatización y estrategia de crecimiento. Futuraria conecta startups, instituciones y talento con las herramientas de IA que ya están cambiando el mundo.'),
           )
         )
       )
@@ -416,23 +400,121 @@ function App() {
 
     h(Divider),
 
-    /* ── PRICING ── */
-    h('section', { id: 'pricing', style: { background: '#000' } },
+    /* ── NEW: ESCALERA DE VALOR ── */
+    h('section', { id: 'escalera', style: { background: '#000' } },
       h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'Ticket y modelo de pricing'),
-        h('div', { className: 'section-title' }, '¿Cuánto cuesta?'),
-        h('div', { className: 'pricing-grid' },
-          h('div', { className: 'pricing-card glass-card' }, h('h4', null, '🔬 Investigador Individual'), h('div', { className: 'who' }, 'Bolsillo propio o beca'), h('div', { className: 'amount' }, '$150-1,500'), h('div', { className: 'unit' }, 'USD según formato')),
-          h('div', { className: 'pricing-card glass-card' }, h('h4', null, '🏢 PyME / Startup'), h('div', { className: 'who' }, 'Empresa que capacita equipo'), h('div', { className: 'amount' }, '$500-2,500'), h('div', { className: 'unit' }, 'USD por participante')),
-          h('div', { className: 'pricing-card glass-card' }, h('h4', null, '🏛️ Institucional'), h('div', { className: 'who' }, 'CONICET, INTA, universidades'), h('div', { className: 'amount' }, '$200-1,000'), h('div', { className: 'unit' }, 'USD/part × 20-30')),
-          h('div', { className: 'pricing-card glass-card' }, h('h4', null, '💎 Premium'), h('div', { className: 'who' }, 'Mentoría 1:1 + acompañamiento'), h('div', { className: 'amount' }, '$2,000-3,000'), h('div', { className: 'unit' }, 'USD por participante'))
-        ),
-        h('div', { className: 'glass-card', style: { marginTop: '40px' } },
-          h('h4', { style: { fontFamily: "'Instrument Serif', serif", fontSize: '1.2rem', marginBottom: '20px' } }, '💰 Revenue streams adicionales'),
-          h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' } },
-            h('div', null, h('strong', null, 'Consultoría post-bootcamp'), h('p', { style: { fontSize: '0.85rem', color: 'rgba(255,255,255,0.45)', marginTop: '4px' } }, '$150-300/hora')),
-            h('div', null, h('strong', null, 'Licencia de playbook'), h('p', { style: { fontSize: '0.85rem', color: 'rgba(255,255,255,0.45)', marginTop: '4px' } }, '$5,000-15,000/año a instituciones')),
-            h('div', null, h('strong', null, 'Success fee'), h('p', { style: { fontSize: '0.85rem', color: 'rgba(255,255,255,0.45)', marginTop: '4px' } }, '% de spin-offs que se funden'))
+        h('div', { className: 'section-label' }, 'Escalera de Valor — Quantum Sales'),
+        h('div', { className: 'section-title' }, '3 niveles para ir de la idea', h('br'), 'al producto de IA'),
+        h('div', { className: 'section-subtitle' }, 'Cada nivel es un producto independiente. No necesitás pasar por todos — pero si llegás al nivel 3, el éxito es inevitable.'),
+        h('div', { className: 'escalera-grid' },
+          /* Nivel 1 */
+          h('div', { className: 'escalera-card glass-card' },
+            h('div', { className: 'level-num' }, '1'),
+            h('div', { className: 'emoji' }, '🚀'),
+            h('div', { className: 'escalera-badge' }, 'Virtual · 1 día · 6h'),
+            h('h3', null, 'IA para lanzar MVPs'),
+            h('p', { style: { color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', marginBottom: '16px' } }, 'Para emprendedores y founders que quieren lanzar un negocio digital.'),
+            h('div', { className: 'escalera-agenda' },
+              h('h4', null, '📋 Agenda del día'),
+              h('ul', null,
+                h('li', null, '▸ Apertura: "Lo que vas a construir hoy" + demos de MVPs reales'),
+                h('li', null, '▸ Herramientas: ChatGPT, Claude, Lovable, Bolt para frontend'),
+                h('li', null, '▸ Construcción + Deploy: GitHub → Netlify. Dominio propio. Demo Day.')
+              )
+            ),
+            h('div', { className: 'escalera-output' },
+              h('strong', null, '✅ Te llevás:'),
+              h('span', { style: { color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' } }, ' MVP funcionando con URL pública + Playbook "Lanzá tu MVP en 24h" + Comunidad Alumni')
+            ),
+            h('a', { className: 'cta-btn escalera-cta', href: 'mailto:info@futuraria.com?subject=Nivel%201%20-%20IA%20para%20lanzar%20MVPs', target: '_blank' }, 'Inscribirme')
+          ),
+          /* Nivel 2 */
+          h('div', { className: 'escalera-card glass-card destacado' },
+            h('div', { className: 'level-num' }, '2'),
+            h('div', { className: 'emoji' }, '🔬'),
+            h('div', { className: 'escalera-badge' }, 'Híbrido · 5 semanas · 15h'),
+            h('h3', null, 'IA para acelerar la ciencia'),
+            h('p', { style: { color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', marginBottom: '16px' } }, 'Para investigadores, científicos y equipos de I+D que quieren convertir su expertise en prototipos de IA.'),
+            h('div', { className: 'escalera-agenda' },
+              h('h4', null, '📋 Las 5 semanas'),
+              h('ul', null,
+                h('li', null, '▸ Sem 1: De la investigación al problema de mercado → 1-pager'),
+                h('li', null, '▸ Sem 2: Modelos IA por rubro en Colab con datos reales → notebook corriendo'),
+                h('li', null, '▸ Sem 3–5: Prototipado + Pitch deck + IP + Demo Day ante inversores')
+              )
+            ),
+            h('div', { className: 'escalera-output' },
+              h('strong', null, '✅ Te llevás:'),
+              h('span', { style: { color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' } }, ' Prototipo IA funcional + Pitch deck + 37 modelos en Colab + Mentoría grupal + Grabaciones')
+            ),
+            h('a', { className: 'cta-btn escalera-cta', href: 'mailto:info@futuraria.com?subject=Nivel%202%20-%20IA%20para%20acelerar%20la%20ciencia', target: '_blank' }, 'Inscribirme')
+          ),
+          /* Nivel 3 */
+          h('div', { className: 'escalera-card glass-card' },
+            h('div', { className: 'level-num' }, '3'),
+            h('div', { className: 'emoji' }, '🧭'),
+            h('div', { className: 'escalera-badge' }, '1:1 Virtual · 3 meses · 6h + async'),
+            h('h3', null, 'Mentoría para escalar'),
+            h('p', { style: { color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', marginBottom: '16px' } }, 'Para alumni del Nivel 2 que quieren convertir su prototipo en empresa.'),
+            h('div', { className: 'escalera-agenda' },
+              h('h4', null, '📋 Los 3 meses'),
+              h('ul', null,
+                h('li', null, '▸ Mes 1: Refinar pitch deck + validación con clientes reales'),
+                h('li', null, '▸ Mes 2: Estrategia de IP, patentes, constitución legal'),
+                h('li', null, '▸ Mes 3: Conexión con inversores + growth strategy')
+              )
+            ),
+            h('div', { className: 'escalera-output' },
+              h('strong', null, '✅ Te llevás:'),
+              h('span', { style: { color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' } }, ' Empresa constituida + Pitch validado + IP y patentes + 3 conexiones con inversores + Red Alumni vitalicia')
+            ),
+            h('a', { className: 'cta-btn escalera-cta', href: 'mailto:info@futuraria.com?subject=Nivel%203%20-%20Mentor%C3%ADa%20para%20escalar', target: '_blank' }, 'Inscribirme')
+          )
+        )
+      )
+    ),
+
+    /* ── NEW: QUE INCLUYE ── */
+    h('section', { id: 'incluye', style: { background: '#000' } },
+      h('div', { className: 'section-container' },
+        h('div', { className: 'section-label' }, 'Qué incluye cada nivel'),
+        h('div', { className: 'section-title' }, 'Todo lo que necesitás', h('br'), 'para llegar al siguiente nivel'),
+        h('div', { className: 'incluye-grid' },
+          h('div', { className: 'incluye-col glass-card' },
+            h('div', { className: 'incluye-emoji' }, '🚀'),
+            h('h3', null, 'Nivel 1'),
+            h('p', { className: 'incluye-sub' }, 'MVP online'),
+            h('ul', { className: 'incluye-checklist' },
+              h('li', null, '✅ MVP funcionando con URL pública'),
+              h('li', null, '✅ Playbook "Lanzá tu MVP en 24h"'),
+              h('li', null, '✅ Comunidad Alumni (WhatsApp)'),
+              h('li', null, '✅ 10 herramientas ($0-20/mes)')
+            )
+          ),
+          h('div', { className: 'incluye-col glass-card' },
+            h('div', { className: 'incluye-emoji' }, '🔬'),
+            h('h3', null, 'Nivel 2'),
+            h('p', { className: 'incluye-sub' }, 'Prototipo IA + pitch'),
+            h('ul', { className: 'incluye-checklist' },
+              h('li', null, '✅ Prototipo IA funcional'),
+              h('li', null, '✅ Pitch deck listo para inversores'),
+              h('li', null, '✅ Mentoría grupal (5 semanas)'),
+              h('li', null, '✅ Grabaciones de todas las sesiones'),
+              h('li', null, '✅ 37 modelos + Colab notebooks'),
+              h('li', null, '✅ Comunidad Alumni')
+            )
+          ),
+          h('div', { className: 'incluye-col glass-card' },
+            h('div', { className: 'incluye-emoji' }, '🧭'),
+            h('h3', null, 'Nivel 3'),
+            h('p', { className: 'incluye-sub' }, 'Empresa + inversores'),
+            h('ul', { className: 'incluye-checklist' },
+              h('li', null, '✅ Empresa constituida legalmente'),
+              h('li', null, '✅ Mentoría 1:1 (6 sesiones)'),
+              h('li', null, '✅ Red de inversores'),
+              h('li', null, '✅ IP + estrategia de patentes'),
+              h('li', null, '✅ Acceso vitalicio a red Alumni')
+            )
           )
         )
       )
@@ -440,81 +522,41 @@ function App() {
 
     h(Divider),
 
-    /* ── PLAYBOOKS ── */
-    h('section', { id: 'playbooks', style: { background: '#000' } },
+    /* ── NEW: ORGANIZATION ROUTES ── */
+    h('section', { id: 'organizaciones', style: { background: '#000' } },
       h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'Playbooks operativos'),
-        h('div', { className: 'section-title' }, 'Cómo funciona en la práctica'),
-        h('div', { className: 'playbook-tabs' },
-          h('button', { className: 'playbook-tab' + (activeTab === 'leads' ? ' active' : ''), onClick: () => setActiveTab('leads') }, '🎯 Atraer Leads'),
-          h('button', { className: 'playbook-tab' + (activeTab === 'during' ? ' active' : ''), onClick: () => setActiveTab('during') }, '🎓 Durante'),
-          h('button', { className: 'playbook-tab' + (activeTab === 'post' ? ' active' : ''), onClick: () => setActiveTab('post') }, '🚀 Post-Bootcamp')
+        h('div', { className: 'section-label' }, 'Rutas por organización'),
+        h('div', { className: 'section-title' }, 'Cada organización,', h('br'), 'sus modelos de IA'),
+        h('div', { className: 'section-subtitle' }, 'Explorá los modelos open-source más relevantes para cada institución científica de Argentina. Todos corren en Google Colab sin GPUs dedicadas.'),
+        h('div', { className: 'org-tabs' },
+          Object.entries(ORGS).map(function(entry) {
+            var key = entry[0], org = entry[1];
+            return h('button', {
+              key: key,
+              className: 'org-tab' + (activeOrg === key ? ' active' : ''),
+              onClick: function() { setActiveOrg(key); }
+            }, org.icon + ' ' + org.name);
+          })
         ),
-        activeTab === 'leads' && h('div', { className: 'playbook-content active' },
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '1'), h('div', { className: 'step-content' }, h('h4', null, 'Convenios institucionales'), h('p', null, 'Alianzas con CONICET (STANs), INTA (extensión), UVTs universitarias. Ellos tienen la audiencia, nosotros el contenido.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '2'), h('div', { className: 'step-content' }, h('h4', null, 'Casos de éxito como imán'), h('p', null, 'Retinar, Bioceres, Satellogic — historias de científicos argentinos que crearon productos. Contenido en LinkedIn, YouTube.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '3'), h('div', { className: 'step-content' }, h('h4', null, 'Eventos y congresos'), h('p', null, 'Presencia en INTA Manfredi, SAIA Conference, congresos CONICET. Workshop gratuito de 1 hora como teaser.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '4'), h('div', { className: 'step-content' }, h('h4', null, 'Programa de referidos'), h('p', null, 'Cada participante que refiere a otro obtiene descuento. Los científicos confían en otros científicos.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '5'), h('div', { className: 'step-content' }, h('h4', null, 'Content marketing'), h('p', null, 'Blog: "De la ciencia al producto." Tutoriales IA aplicada. SEO para "inteligencia artificial + [dominio] + Argentina."')))
-        ),
-        activeTab === 'during' && h('div', { className: 'playbook-content active' },
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '1'), h('div', { className: 'step-content' }, h('h4', null, 'Problema, no tecnología'), h('p', null, 'Empezamos por el problema de mercado. Cada científico trae su investigación. Workshop: "¿Quién pagaría por esto?"'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '2'), h('div', { className: 'step-content' }, h('h4', null, 'Herramientas prácticas'), h('p', null, 'Python + APIs de IA (OpenAI, Hugging Face). No construimos modelos desde cero — usamos los que existen.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '3'), h('div', { className: 'step-content' }, h('h4', null, 'MVP en el bootcamp'), h('p', null, 'Cada participante sale con un prototipo funcional. Streamlit, Gradio, FastAPI. No un PowerPoint.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '4'), h('div', { className: 'step-content' }, h('h4', null, 'Mentores de industria'), h('p', null, 'Sesiones 1:1 con fundadores de Retinar, Bioceres, etc. Emprendedores que pasaron por lo mismo.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '5'), h('div', { className: 'step-content' }, h('h4', null, 'Demo Day'), h('p', null, 'Presentación ante inversores e instituciones. Cada científico pitch su producto en 5 minutos.')))
-        ),
-        activeTab === 'post' && h('div', { className: 'playbook-content active' },
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '1'), h('div', { className: 'step-content' }, h('h4', null, 'Alumni Network'), h('p', null, 'Comunidad privada de todos los participantes. Encuentros mensuales. Los que avanzan ayudan a los nuevos.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '2'), h('div', { className: 'step-content' }, h('h4', null, 'Aceleración de proyectos'), h('p', null, 'Programa de 3 meses de acompañamiento para proyectos con tracción. Mentoría quincenal.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '3'), h('div', { className: 'step-content' }, h('h4', null, 'Conexión con financiamiento'), h('p', null, 'Guía para PICTO IA ($13.5M), Agencia I+D+i ($40M), Ley de Economía del Conocimiento.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '4'), h('div', { className: 'step-content' }, h('h4', null, 'Consultoría on-demand'), h('p', null, 'Alumni pueden contratar consultoría por horas. Revenue recurrente para nosotros.'))),
-          h('div', { className: 'playbook-step' }, h('div', { className: 'step-num' }, '5'), h('div', { className: 'step-content' }, h('h4', null, 'Tracking de impacto'), h('p', null, 'Seguimos qué proyectos se convierten en startups, funding levantado, empleos generados.')))
+        h('div', { className: 'org-content' },
+          h('div', { style: { display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' } },
+            h('span', { style: { fontSize: '2.5rem' } }, ORGS[activeOrg].icon),
+            h('h3', { style: { fontFamily: "'Instrument Serif', serif", fontSize: '1.8rem' } }, ORGS[activeOrg].name)
+          ),
+          h('div', { className: 'org-models' },
+            ORGS[activeOrg].modelos.map(function(m, i) {
+              return h('div', { key: i, className: 'org-model-tag' },
+                h('div', { className: 'mname' }, m.name),
+                h('div', { className: 'mdesc' }, m.desc)
+              );
+            })
+          ),
+          h('div', { className: 'org-pitch' },
+            h('p', null, ORGS[activeOrg].pitch)
+          )
         )
       )
     ),
-
-    h(Divider),
-
-    /* ── DISTRIBUTION ── */
-    h('section', { id: 'distribucion', style: { background: '#000' } },
-      h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'Distribución institucional'),
-        h('div', { className: 'section-title' }, '¿Cómo llegamos a los científicos?'),
-        h('div', { className: 'section-subtitle' }, 'No necesitamos Facebook Ads. Necesitamos convenios con las instituciones que ya tienen la audiencia.'),
-        h('div', { className: 'dist-grid' },
-          h('div', { className: 'dist-card glass-card' }, h('div', { className: 'dist-icon' }, '🔬'), h('h4', null, 'CONICET'), h('p', null, 'Via framework STAN. Ellos buscan vinculación tecnológica.')),
-          h('div', { className: 'dist-card glass-card' }, h('div', { className: 'dist-icon' }, '🌾'), h('h4', null, 'INTA'), h('p', null, 'Convenio AgriTech AI. Productores e investigadores en todo el país.')),
-          h('div', { className: 'dist-card glass-card' }, h('div', { className: 'dist-icon' }, '🎓'), h('h4', null, 'UVTs'), h('p', null, 'Unidades de Vinculación Tecnológica. Canalizan proyectos.')),
-          h('div', { className: 'dist-card glass-card' }, h('div', { className: 'dist-icon' }, '🏛️'), h('h4', null, 'Agencia I+D+i'), h('p', null, 'Proveedor de capacitación para sus beneficiarios.')),
-          h('div', { className: 'dist-card glass-card' }, h('div', { className: 'dist-icon' }, '🧬'), h('h4', null, 'FAN'), h('p', null, 'Complementar bio/nano con módulo IA/ML.'))
-        )
-      )
-    ),
-
-    h(Divider),
-
-    /* ── GAPS ── */
-    h('section', { id: 'gaps', style: { background: '#000' } },
-      h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'Oportunidad'),
-        h('div', { className: 'section-title' }, 'Los 10 gaps que llenamos'),
-        h('div', { className: 'gap-list' },
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '01'), h('div', null, h('h4', null, 'Traducción ciencia → negocio'), h('p', null, 'Los científicos no saben estructurar un spin-off.'))),
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '02'), h('div', null, h('h4', null, 'Capa de aplicación de IA'), h('p', null, 'Investigación fuerte pero puente a producto débil.'))),
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '03'), h('div', null, h('h4', null, 'AgriTech AI'), h('p', null, 'INTA tiene el dominio, limitada capacidad AI.'))),
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '04'), h('div', null, h('h4', null, 'Ecosistema fragmentado'), h('p', null, 'CONICET, INTI, INTA, FAN operan independientes.'))),
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '05'), h('div', null, h('h4', null, 'Sin bootcamp AI para científicos'), h('p', null, 'Hay fondos y aceleradoras, pero nada en el medio.'))),
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '06'), h('div', null, h('h4', null, 'Puente Bio/Nano → AI'), h('p', null, 'FAN hace bio/nano. Falta capa data science/ML.'))),
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '07'), h('div', null, h('h4', null, 'Fuga de cerebros'), h('p', null, 'Investigadores se van. Retener = crear emprendedores.'))),
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '08'), h('div', null, h('h4', null, 'IA ética: política → práctica'), h('p', null, 'Protocolo de Montevideo existe, falta implementación.'))),
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '09'), h('div', null, h('h4', null, 'Desigualdad regional'), h('p', null, 'Todo en BA y Córdoba. Programa federal necesario.'))),
-          h('div', { className: 'gap-item glass-card' }, h('div', { className: 'gap-num' }, '10'), h('div', null, h('h4', null, 'Estrategia IP y patentes'), h('p', null, 'Argentina: 1 patente de IA en 2024. Gap crítico.')))
-        )
-      )
-    ),
-
-    h(Divider),
 
     /* ── METRICS ── */
     h('section', { id: 'metricas', style: { background: '#000' } },
@@ -527,79 +569,31 @@ function App() {
           h('div', { className: 'metric-card glass-card' }, h('div', { className: 'metric-num' }, '2-3'), h('div', { className: 'metric-label' }, 'Instituciones aliadas')),
           h('div', { className: 'metric-card glass-card' }, h('div', { className: 'metric-num' }, '$30-80K'), h('div', { className: 'metric-label' }, 'USD revenue año 1')),
           h('div', { className: 'metric-card glass-card' }, h('div', { className: 'metric-num' }, '>70'), h('div', { className: 'metric-label' }, 'NPS participantes')),
-          h('div', { className: 'metric-card glass-card' }, h('div', { className: 'metric-num' }, '>15%'), h('div', { className: 'metric-label' }, 'Conversión emprendimiento'))
+          h('div', { className: 'metric-card glass-card' }, h('div', { className: 'metric-num' }, '>15%'), h('div', { className: 'metric-label' }, 'Conversión a emprendimiento'))
         )
       )
     ),
 
-    h(Divider),
-
-    /* ── OBJECTIONS ── */
-    h('section', { id: 'objeciones', style: { background: '#000' } },
-      h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'Preparado para objeciones'),
-        h('div', { className: 'section-title' }, 'Lo que Mara va a preguntar'),
-        h('div', { className: 'objection-grid' },
-          h('div', { className: 'objection-card glass-card' }, h('div', { className: 'q' }, '"¿Los científicos quieren emprender?"'), h('div', { className: 'a' }, 'Retinar, Bioceres (NASDAQ), Satellogic (NASDAQ), Auth0 (Okta) prueban que sí. El problema no es la voluntad — es la falta de herramientas.')),
-          h('div', { className: 'objection-card glass-card' }, h('div', { className: 'q' }, '"¿Se puede monetizar?"'), h('div', { className: 'a' }, 'Economía del conocimiento = 3er exportador. $13.5M en PICTO IA, $40M en aceleradoras BID. La demanda existe — el supply no.')),
-          h('div', { className: 'objection-card glass-card' }, h('div', { className: 'q' }, '"¿No es muy nicho?"'), h('div', { className: 'a' }, 'Sí, y eso es la ventaja. 30% deep tech LatAm viene de Argentina. Nicho de alto valor, poca competencia.')),
-          h('div', { className: 'objection-card glass-card' }, h('div', { className: 'q' }, '"¿Y si cambia el gobierno?"'), h('div', { className: 'a' }, 'Ley de Economía del Conocimiento: consenso multipartidario. RIGI: 30 años estabilidad. 3er exportador — ningún gobierno destruye eso.')),
-          h('div', { className: 'objection-card glass-card' }, h('div', { className: 'q' }, '"¿Por qué Argentina?"'), h('div', { className: 'a' }, '30% deep tech LatAm, 12 unicornios, 115K+ developers, mejores universidades. El talento existe. El camino al producto no.')),
-          h('div', { className: 'objection-card glass-card' }, h('div', { className: 'q' }, '"¿Cómo escalamos?"'), h('div', { className: 'a' }, 'Sprint como entry barato. Inmersión como producto principal. Licencia a instituciones como escalador. Sin oficinas — el contenido es el producto.'))
-        )
-      )
-    ),
-
-    h(Divider),
-
-    /* ── PITCH ── */
-    h('section', { id: 'pitch', style: { background: '#000' } },
-      h('div', { className: 'section-container' },
-        h('div', { className: 'section-label' }, 'Resumen ejecutivo para Mara'),
-        h('div', { className: 'section-title' }, 'El pitch en 30 segundos'),
-        h('div', { className: 'pitch-card glass-card' },
-          h('div', { className: 'quote' },
-            h('p', null, h('strong', null, '"Mara, esta es la marca. Esto es lo que haremos."')),
-            h('br'),
-            h('p', null, 'Somos el puente entre la ciencia argentina y los productos de IA. No vendemos bootcamps — ', h('strong', null, 'vendemos retención de talento y creación de empresas'), '.'),
-            h('br'),
-            h('p', null, 'Argentina produce 30% de los deep tech de LatAm pero no tiene ningún programa que convierta científicos en creadores de productos IA. Hay ', h('span', { className: 'accent' }, '$53.5M USD en fondos disponibles'), '.'),
-            h('br'),
-            h('p', null, h('strong', null, '"Estos son los nichos."'), ' AgriTech (INTA), Salud (CONICET), Nano (FAN), Clima, Ciencias Sociales.'),
-            h('br'),
-            h('p', null, h('strong', null, '"Los captamos así."'), ' Convenios con CONICET, INTA, universidades, Agencia I+D+i. Ellos tienen la audiencia — nosotros el contenido.'),
-            h('br'),
-            h('p', null, h('strong', null, '"En el taller."'), ' Problema primero, tecnología después. MVP funcional. Mentores de industria. Demo Day.'),
-            h('br'),
-            h('p', null, h('strong', null, '"Después."'), ' Alumni network. Aceleración. Conexión con $53.5M en fondos. Consultoría on-demand.'),
-            h('br'),
-            h('p', { className: 'accent' }, '"Ticket: $150-3,000 USD. Revenue year 1: $30-80K USD. Y esto recién empieza."')
-          )
-        )
-      )
-    ),
-
-    /* ── CTA ── */
+        /* ── CTA ── */
     h('section', { className: 'cta-section', style: { background: '#000' } },
-      h('h2', null, '¿Listo para cerrar el puente?'),
-      h('p', null, 'De la ciencia argentina al producto de IA. El camino existe — solo falta construirlo.'),
-      h('a', { className: 'cta-btn', href: '#', style: { fontSize: '1.1rem', padding: '16px 40px' } }, 'Hablemos')
+      h('h2', null, 'Reservá tu lugar'),
+      h('p', null, 'Próxima cohorte: Julio 2026. 15–20 cupos por nivel.'),
+      h('a', { className: 'cta-btn', href: 'mailto:info@futuraria.com?subject=Reserva%20Bootcamp%20IA%20%C3%97%20Ciencia', target: '_blank', style: { fontSize: '1.15rem', padding: '18px 44px' } }, 'Inscribirme ahora')
     ),
 
     /* ── FOOTER ── */
     h('footer', null,
       h('div', null,
-        h('p', null, 'IA × Ciencia — Joint Venture 2025'),
+        h('p', null, 'IA × Ciencia — Futuraria 2026'),
         h('div', { style: { display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '16px' } },
-          h('a', { className: 'social-btn liquid-glass', 'aria-label': 'Instagram', style: { borderRadius: '9999px', padding: '12px' } }, h(IconInstagram, { size: 18 })),
-          h('a', { className: 'social-btn liquid-glass', 'aria-label': 'Twitter', style: { borderRadius: '9999px', padding: '12px' } }, h(IconTwitter, { size: 18 })),
-          h('a', { className: 'social-btn liquid-glass', 'aria-label': 'Website', style: { borderRadius: '9999px', padding: '12px' } }, h(IconGlobe, { size: 18 }))
+          h('span', { className: 'liquid-glass', style: { borderRadius: '9999px', padding: '12px', display: 'inline-block' } }, h(IconGlobe, { size: 18 }))
         )
       )
     )
   );
 }
 
+/* ── Mount ── */
 ReactDOM.createRoot(document.getElementById('root')).render(h(App));
 </script>
 </body>
